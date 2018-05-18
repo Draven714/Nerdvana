@@ -15,8 +15,8 @@
  */
 ob_start();
 session_start();
-require_once 'site_configuration/site_info.php';
-require_once 'includes/private_header.php';
+require_once '../site_configuration/site_info.php';
+require_once ROOT . '/includes/private_header.php';
 
 if (Authenticate::isLoggedIn()) {
     $action = isset($_GET['action']) ? $_GET['action'] : '';
@@ -55,13 +55,13 @@ if (Authenticate::isLoggedIn()) {
         <br class="clear">
     </section>
 
-    <h3>In Progress:</h4>
+    <h3>In Progress:</h3>
     <h4>Events</h4>
         <ul>
             <li>Calendar for events</li>
             <li>Notifications from calendar</li>
         </ul>
-    <h4>Forums</h5>
+    <h4>Forums</h4>
         <ul>
             <li>Forum Script</li>
             <li>Forum Class</li>
@@ -72,25 +72,27 @@ if (Authenticate::isLoggedIn()) {
         <ul>
             <li>Profile Pictures</li>
             <li>Player Information</li>
-                <ul>
-                    <li>Username</li>
-                    <li>Location</li>
-                    <li>Age</li>
-                    <li>Games Played</li>
-                    <li>Guilds in Games</li>
-                    <li>Occupation</li>
-                </ul>
+                <li>
+                    <ul>
+                        <li>Username</li>
+                        <li>Location</li>
+                        <li>Age</li>
+                        <li>Games Played</li>
+                        <li>Guilds in Games</li>
+                        <li>Occupation</li>
+                    </ul>
+                </li>
             <li>Character Picture Gallery</li>
             <li>Accounts Page</li>
         </ul>
 
-    <h1 style="font: 40px; color: orange">PRACTICE MAKES PERFECT! <br>More practice = better skills.</h1>
+    <h1 style="font-size: 40px; color: orange">PRACTICE MAKES PERFECT! <br>More practice = better skills.</h1>
     <?php
     }
 } else {
     Authenticate::notLoggedIn();
 }
-require_once 'includes/private_footer.php';
+require_once ROOT . '/includes/private_footer.php';
 $contents = ob_get_contents();
 echo $contents;
 ob_end_flush();
