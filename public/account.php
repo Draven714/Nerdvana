@@ -16,8 +16,8 @@
 
 ob_start();
 session_start();
-require_once 'site_configuration/site_info.php';
-require_once 'includes/private_header.php';
+require_once '../site_configuration/site_info.php';
+require_once ROOT . '/includes/private_header.php';
 
 if (Authenticate::isLoggedIn()) {
 
@@ -457,7 +457,7 @@ if (Authenticate::isLoggedIn()) {
 } else {
     Authenticate::notLoggedIn();
 }
-require_once 'includes/private_footer.php';
+require_once ROOT . '/includes/private_footer.php';
 $contents = ob_get_contents();
 ob_end_flush();
 echo $contents;

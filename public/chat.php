@@ -15,7 +15,7 @@
  */
 ob_start();
 session_start();
-require_once 'site_configuration/site_info.php';
+require_once '../site_configuration/site_info.php';
 
 if (Authenticate::isLoggedIn()) {
 

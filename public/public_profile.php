@@ -14,8 +14,8 @@
  * @link     https://github.com/Ziarlos
  */
 ob_start();
-require_once 'site_configuration/site_info.php';
-require_once 'includes/public_header.php';
+require_once '../site_configuration/site_info.php';
+require_once ROOT . '/includes/public_header.php';
 
 $action = isset($_GET['action']) ? $_GET['action'] : '';
 switch ($action) {
@@ -55,7 +55,7 @@ default:
     echo '<p>'.$members.'</p>';
 }
 
-require_once 'includes/public_footer.php';
+require_once ROOT . '/includes/public_footer.php';
 $contents = ob_get_contents();
 // echo $contents;
 ob_end_flush();

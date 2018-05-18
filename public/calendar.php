@@ -6,7 +6,7 @@
  * Below we start a database connection.
  * Since PHP in moving to PDO and MySQLi, we no longer use MySQL.
  * PHP version 7+
- * 
+ *
  * @category Social
  * @package  Social
  * @author   Ziarlos <bruce.wopat@gmail.com>
@@ -16,8 +16,8 @@
 session_start();
 ob_start();
 
-require_once 'site_configuration/site_info.php';
-require_once 'includes/private_header.php';
+require_once '../site_configuration/site_info.php';
+require_once ROOT . '/includes/private_header.php';
 
 if (Authenticate::isLoggedIn()) {
     /* date settings */
@@ -56,7 +56,7 @@ if (Authenticate::isLoggedIn()) {
      *
      * @param int $month Include a value for month
      * @param int $year  Include a value for year
-     * 
+     *
      * @return void
      */
     function draw_calendar($month, $year)
@@ -133,7 +133,7 @@ if (Authenticate::isLoggedIn()) {
 } else {
     Authenticate::notLoggedIn();
 }
-require_once 'includes/private_footer.php';
+require_once ROOT . '/includes/private_footer.php';
 $contents = ob_get_contents();
 ob_end_flush();
 echo $contents;

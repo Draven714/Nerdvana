@@ -13,8 +13,8 @@
  * @license  http://opensource.org/licenses/gpl-license.php GNU Public License
  * @link     https://github.com/Ziarlos
  */
-require_once './site_configuration/site_info.php';
-?>     
+require_once '../site_configuration/site_info.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,12 +27,12 @@ require_once './site_configuration/site_info.php';
     <meta name="author" content="">
 
     <title>The Network - A Social Zone</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="css/global.css">
-    <link rel="stylesheet" href="css/public.css">
-    <script src="js/jquery-3.1.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/css/global.css">
+    <link rel="stylesheet" href="/css/public.css">
+    <script src="/js/jquery-3.1.1.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
     <script>
         $(document).ready(function() {
             $('[data-toggle=offcanvasleft]').on("click", function() {
@@ -67,11 +67,11 @@ require_once './site_configuration/site_info.php';
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="index.php">Home</a></li>
-                        <li><a href="index.php?action=terms_of_service">Terms of Service</a></li>
-                        <li><a href="index.php?action=register">Register</a></li>
-                        <li><a href="index.php?action=lost-password">Lost Password</a></li>
-                        <li><a href="public_profile.php">Profiles</a></li>
+                        <li class="active"><a href="/index.php">Home</a></li>
+                        <li><a href="/index.php?action=terms_of_service">Terms of Service</a></li>
+                        <li><a href="/index.php?action=register">Register</a></li>
+                        <li><a href="/index.php?action=lost-password">Lost Password</a></li>
+                        <li><a href="/public_profile.php">Profiles</a></li>
                     </ul>
                 </div> <!-- /.nav-collapse -->
             </div> <!-- /.container -->
@@ -82,7 +82,7 @@ require_once './site_configuration/site_info.php';
             <div class="col-xs-6 col-sm-3 col-lg-3 sidebar-offcanvas" id="sidebarLeft" role="navigation">
                 <div class="well sidebar-nav clearfix">
             <aside class="sign-in">
-                  <form action="login.php?action=login" method="post">
+                  <form action="/login.php?action=login" method="post">
                     <div class="form-group">
                         <label for="login-email" class="control-label">Email</label>
                         <input type="text" name="login-email" id="login-email" placeholder="Email" class="form-control">
@@ -112,8 +112,3 @@ require_once './site_configuration/site_info.php';
 
             <div class="col-xs-12 col-sm-9 col-lg-9">
                 <div class="well clearfix">
-                            
-                            
-                            
-                            
-                            
