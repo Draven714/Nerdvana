@@ -25,7 +25,6 @@ if (!defined('DS')) {
 if (!defined('ROOT')) {
     define('ROOT', dirname(dirname(__FILE__)));
 }
-var_dump(ROOT);exit;
 
 /**
  * Define the timezone: set to America/Los_Angeles (PST) for now.
