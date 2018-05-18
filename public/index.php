@@ -16,9 +16,9 @@
 ob_start();
 session_start();
 
-require_once 'includes/public_header.php';
-require_once 'site_configuration/site_configuration.inc.php';
-require_once 'site_configuration/site_info.php';
+require_once '../site_configuration/site_configuration.inc.php';
+require_once ROOT . '/includes/public_header.php';
+require_once ROOT . '/site_configuration/site_info.php';
 
 $action = isset($_GET['action']) ? $_GET['action'] : null;
 
@@ -47,9 +47,9 @@ case 'lost-password':
             $headers = 'From: Bruce<bruce@vps.fromdusktillcon.com>' . "\r\n";
             $headers .= 'Content-type: text/html; charset="UTF-8"' . "\r\n";
             $headers .= 'X-Mailer: PHP/' . phpversion();
-                        
+
             mail($to, $subject, $message, $headers);
-            
+
             $Database->query("INSERT INTO users_password_reset (email, token, requested_timestamp) VALUES (:email, :token, NOW())", array(':email' => $lost_password_email, ':token' => $token));
         }
 
@@ -75,7 +75,7 @@ case 'lost-password':
         <?php
     }
     break;
-    
+
 case 'reset-password':
     $email = isset($_REQUEST['email']) ? $_REQUEST['email'] : null;
     $token = isset($_REQUEST['token']) ? $_REQUEST['token'] : null;
@@ -128,8 +128,8 @@ case 'reset-password':
     ?>
     <p>Reset your password here</p>
     <form action="index.php?action=reset-password" method="post" id="external_password_reset_form" class="form-horizontal">
-        <fieldset>Reset Password</fieldset>	
-        <div class="form-group">	
+        <fieldset>Reset Password</fieldset>
+        <div class="form-group">
             <label for="reset_password_email" class="control-label col-sm-3">
                 Email:
             </label>
@@ -168,78 +168,77 @@ case 'reset-password':
                 </button>
             </div>
         </div>
-        </fieldset>
     </form>
     <?php
     }
     break;
-    
+
 case 'register':
     if (isset($_GET['confirm_register']) && $_GET['confirm_register'] == "Y") {
-    
+
         $user_name = isset($_POST['user_name']) ? $_POST['user_name'] : '';
         $register_email = isset($_POST['register-email']) ? $_POST['register-email'] : '';
         $register_password = isset($_POST['register-password']) ? $_POST['register-password'] : '';
         $confirm_password = isset($_POST['confirm-password']) ? $_POST['confirm-password'] : '';
         $gender = isset($_POST['gender']) ? $_POST['gender'] : '';
         $error = false;
-        
+
         if (!empty($user_name) && (strlen($user_name) < 4 || strlen($user_name) > 16)) {
             $error = true;
             echo '<div class="alert alert-warning">';
                 echo '<p>Your name must be between 4 and 16 characters. You put in '.strlen($user_name).' characters.</p>';
             echo '</div>';
         }
-        
+
         if (empty($user_name)) {
             $error = true;
             echo '<div class="alert alert-warning">';
                 echo '<p>You must enter a name!</p>';
             echo '</div>';
         }
-        
+
         if (!preg_match("/[a-zA-Z0-9]/", $user_name)) {
             $error = true;
             echo '<div class="alert alert-warning">';
                 echo '<p>Your name cannot have anything other than alphabetical or numerical characters in it.</p>';
             echo '</div>';
         }
-        
+
         if (!filter_var($register_email, FILTER_VALIDATE_EMAIL)) {
             $error = true;
             echo '<div class="alert alert-warning">';
                 echo '<p>You must enter a valid email address.</p>';
             echo '</div>';
         }
-        
+
         if (empty($register_password)) {
             $error = true;
             echo '<div class="alert alert-warning">';
                 echo '<p>You need to enter a password!</p>';
             echo '</div>';
         }
-        
+
         if (empty($confirm_password)) {
             $error = true;
             echo '<div class="alert alert-warning">';
                 echo '<p>Please re-enter your password to confirm it.</p>';
             echo '</div>';
         }
-        
+
         if ($register_password != $confirm_password) {
             $error = true;
             echo '<div class="alert alert-warning">';
                 echo '<p>Your passwords do not match!</p>';
             echo '</div>';
         }
-        
+
         if (!preg_match("/(M|F)/", $gender)) {
             $error = true;
             echo '<div class="alert alert-warning">';
                 echo '<p>You either did not choose one of the gender choices provided or you did not choose a gender.</p>';
             echo '</div>';
         }
-        
+
         $check = $dbx->prepare("SELECT * FROM users WHERE email = :email OR user_name = :user_name");
         $check->execute(array(':email' => $register_email, ':user_name' => $user_name));
 
@@ -249,21 +248,21 @@ case 'register':
                 echo '<p>That name or email address is already in use.</p>';
             echo '</div>';
         }
-        
+
         if ($error === false) {
             $password = HASH("SHA512", $register_password);
-            
+
             $add = $dbx->prepare("INSERT INTO users (user_id, user_name, email, password, gender) values ('', :user_name, :email, :password, :gender)");
             $add->execute(array(':user_name' => $user_name, ':email' => $register_email, ':password' => $password, ':gender' => $gender));
 
             echo '<div class="alert alert-success">';
                 echo '<p>You have successfully registered!</p>';
             echo '</div>';
-            
+
             $to = $register_email;
             $subject = 'Welcome to (Website)!';
             $message = 'You have successfully registered your user name '.$user_name.' on (Website)!';
-                        
+
             mail($to, $subject, $message);
         }
     } else {
@@ -332,16 +331,16 @@ case 'register':
     <?php
     }
     break;
-    
+
 case "terms_of_service":
     echo "<p>Terms of service goes here!</p>";
     break;
-    
+
 default:
 ?>
 <div class="jumbotron">
 <h2> Welcome to the Gaming Forum!</h2>
-<h3>In Progress:</h4>
+<h3>In Progress:</h3>
 <dl>
     <dt>Events</dt>
         <dd>Calendar for Events</dd>
@@ -368,26 +367,5 @@ default:
 </div>
 <?php
 }
-require_once 'includes/public_footer.php';
+require_once ROOT . '/includes/public_footer.php';
 ob_end_flush();
-?>
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            

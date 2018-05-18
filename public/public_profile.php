@@ -39,7 +39,7 @@ case 'view':
         <?php
     } else {
         Authenticate::invalidAuthorization();
-    }  
+    }
     break;
 
 default:
@@ -50,7 +50,7 @@ default:
         if ($members != '') {
             $members .= ', ';
         }
-        $members .= '<a href="public_profile.php?action=view&amp;user_id=' . $list['user_id'] . '">' . $list['user_name'] . '</a>';
+        $members .= '<a href="public_profile.php?action=view&amp;user_id=EXTERNAL_FRAGMENT">' . $list['user_id'] . '' . $list['user_name'] . '</a>';
     }
     echo '<p>'.$members.'</p>';
 }

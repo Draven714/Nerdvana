@@ -6,7 +6,7 @@
  * Below we start a database connection.
  * Since PHP in moving to PDO and MySQLi, we no longer use MySQL.
  * PHP version 7+
- * 
+ *
  * @category Social
  * @package  Social
  * @author   Ziarlos <bruce.wopat@gmail.com>
@@ -115,7 +115,7 @@ if (Authenticate::isLoggedIn()) {
         }
         echo '<div class="back_button"><a href="account.php">Account Settings</a></div>';
         break;
-    
+
     case 'change-email':
         if (isset($_POST['change_email_confirmed']) && $_POST['change_email_confirmed'] == "Y") {
             $current_email = isset($_POST['current_email']) ? $_POST['current_email'] : null;
@@ -212,7 +212,7 @@ if (Authenticate::isLoggedIn()) {
         echo '<div class="back_button"><a href="account.php">Account Settings</a></div>';
 
         break;
-    
+
     case 'change-password':
         if (isset($_POST['change_password_confirmed']) && $_POST['change_password_confirmed'] === "Y") {
             if (isset($_POST['enter_current_password'])) {
@@ -299,7 +299,7 @@ if (Authenticate::isLoggedIn()) {
             echo '<a href="account.php">Account Settings</a>';
         echo '</div>';
         break;
-    
+
     case 'manage-images':
         if (isset($_GET['sub-action']) && $_GET['sub-action'] == "delete_image") {
             if (isset($_GET['image_name'])) {
@@ -341,7 +341,7 @@ if (Authenticate::isLoggedIn()) {
             for ($i = 0; $i < $image_count; $i++) {
                 $id = explode('_', $directory[$i]);
                 if ($id[0] == $user['user_id']) {
-                    echo '<dt> <img src="/images/user_images/' . $directory[$i] . '" alt="Uploaded Image: ' . $directory[$i] . '" width="40%" height="40%"> </dt> <dd> <a href="account.php?action=manage-images&amp;sub-action=delete_image&amp;image_name=' . $directory[$i] . '">Delete Image: ' . $directory[$i] . '</a></dd> <dd><a href="account.php?action=manage-images&amp;sub-action=set_avatar&amp;image_name=' . $directory[$i] . '">Set Image: ' . $directory[$i] . ' as Avatar Picture</a></dd>';
+                    echo '<dt> <img src="/public/images/user_images/EXTERNAL_FRAGMENT" alt="Uploaded Image: ' . $directory[$i] . '' . $directory[$i] . '" width="40%" height="40%"> </dt> <dd> <a href="account.php?action=manage-images&amp;sub-action=delete_image&amp;image_name=EXTERNAL_FRAGMENT">Delete Image: ' . $directory[$i] . '</a></dd> <dd><a href="account.php?action=manage-images&amp;sub-action=set_avatar&amp;image_name=' . $directory[$i] . '">Set Image: ' . $directory[$i] . '' . $directory[$i] . ' as Avatar Picture</a></dd>';
                 }
             }
             echo '</dl>';
@@ -352,16 +352,16 @@ if (Authenticate::isLoggedIn()) {
         }
         echo '<div class="back_button"><a href="account.php">Account Settings</a></div>';
         break;
-    
+
     case 'upload-images':
         echo '<div class="alert alert-warning">';
             echo '<p>This is still in development.</p>';
         echo '</div>';
-        
+
         if (isset($_POST['upload_images']) && $_POST['upload_images'] == "Y") {
             echo '<p>You submitted the images upload form! The coder is researching methods of uploading pictures.</p>';
-            
-            
+
+
             if (isset($_FILES['images']) && count($_FILES['images']['name']) == 1) {
                 if (isset($_FILES['images'])) {
                     //  $image = $_FILES['images']['name'];
@@ -421,7 +421,7 @@ if (Authenticate::isLoggedIn()) {
                     </div>
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
-                            <button type="submit" name="upload_images" 
+                            <button type="submit" name="upload_images"
                                 value="Y" class="btn btn-default">
                                 Upload Images
                             </button>
@@ -432,7 +432,7 @@ if (Authenticate::isLoggedIn()) {
         <?php
         echo '<div class="back_button"><a href="account.php">Account Settings</a></div>';
         break;
-    
+
     default:
     ?>
         <ul class="list-group">
