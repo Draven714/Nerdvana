@@ -16,9 +16,7 @@
 ob_start();
 session_start();
 
-require_once '../site_configuration/site_configuration.inc.php';
-require_once ROOT . '/includes/public_header.php';
-require_once ROOT . '/site_configuration/site_info.php';
+require_once '../includes/public_header.php';
 
 $action = isset($_GET['action']) ? $_GET['action'] : null;
 

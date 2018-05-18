@@ -15,8 +15,8 @@
  */
 ob_start();
 session_start();
-require_once '../site_configuration/site_info.php';
-require_once ROOT . '/includes/private_header.php';
+
+require_once '../includes/private_header.php';
 
 if (Authenticate::isLoggedIn()) {
     $action = isset($_GET['action']) ? $_GET['action'] : '';
