@@ -13,7 +13,16 @@
  * @license  http://opensource.org/licenses/gpl-license.php GNU Public License
  * @link     https://github.com/Ziarlos
  */
-require_once './vendor/autoload.php';
+
+if (!defined('DS')) {
+    define('DS', DIRECTORY_SEPARATOR);
+}
+
+if (!defined('ROOT')) {
+    define('ROOT', dirname(dirname(__FILE__)));
+}
+
+require_once ROOT . '/vendor/autoload.php';
 
 $dotenv = new Dotenv\Dotenv(__DIR__);
 $dotenv->load();
@@ -23,14 +32,6 @@ define('DB_HOSTNAME', getenv('DB_HOSTNAME'));
 define('DB_USERNAME', getenv('DB_USERNAME'));
 define('DB_PASSWORD', getenv('DB_PASSWORD'));
 define('DATABASE', getenv('DATABASE'));
-
-if (!defined('DS')) {
-    define('DS', DIRECTORY_SEPARATOR);
-}
-
-if (!defined('ROOT')) {
-    define('ROOT', dirname(dirname(__FILE__)));
-}
 
 /**
 * Define the timezone: set to America/Los_Angeles (PST) for now.
