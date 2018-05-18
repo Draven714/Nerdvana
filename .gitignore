@@ -1,4 +1,8 @@
-.env
+# Ignore the .env file no matter where it's located.
+*.env
+
+# Ignore PHPStorms .idea folder.
 .idea
-.htaccess
+
+# Don't commit composers vendor folder.
 vendor
