@@ -20,24 +20,25 @@ use PDOException;
 
 class Authenticate
 {
-    
     /**
      * Handle for database connection
-     * 
-     * @var $Database handle for database connection
+     *
+     * @object $Database
      */
     private $Database = null;
-    
+
     /**
-     * @var $status_message array handling messages
+     * Handling Messaages
+     *
+     * @var array $status_message
      */
     private $status_message = array();
-    
+
     public function __construct(Database $Database)
     {
         $this->Database = $Database;
     }
-    
+
     public function registration($user_name, $email, $password, $gender)
     {
         try {
@@ -48,41 +49,42 @@ class Authenticate
             return false;
         }
     }
-    
+
     public function verification()
     {
-    
+
     }
+
     public function login()
     {
-    
+
     }
-    
+
     public function logout()
     {
-    
+
     }
-    
+
     public function changePassword()
     {
-    
+
     }
-    
+
     public function lostPassword()
     {
-        
+
     }
-    
+
     public function resetPassword()
     {
-    
+
     }
-    
+
     public function authenticateSession()
     {
-    
+
     }
-    
+
     public static function isLoggedIn()
     {
         if (isset($_SESSION['login_status']) && $_SESSION['login_status'] === true) {
@@ -91,14 +93,14 @@ class Authenticate
             return false;
         }
     }
-    
+
     public static function notLoggedIn()
     {
         ?>
         <h1 class="error">You must be logged in to view this page.</h1>
         <?php
     }
-    
+
     public static function invalidAuthorization()
     {
         ?>
@@ -106,15 +108,14 @@ class Authenticate
         <div class="back_button"><a href="javascript:history.back();">Go to previous page.</a></div>
         <?php
     }
-    
+
     public function support()
     {
-    
-    }
-    
-    public function __destruct()
-    {
-    
+
     }
 
+    public function __destruct()
+    {
+
+    }
 }
