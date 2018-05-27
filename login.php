@@ -29,9 +29,9 @@ case 'login':
         $password = filter_input(INPUT_POST, 'login-password', FILTER_SANITIZE_STRING);
     }
     $error = false;
-    
+
     $pass = HASH("SHA512", $password);
-    
+
     $user = $Database->query("SELECT user_id, user_name, email, password, gender FROM users WHERE email = :email LIMIT 1", array(':email' => $email));
     $user_exists = $Database->count();
 
@@ -54,7 +54,7 @@ case 'login':
         include_once 'includes/public_footer.php';
     }
     break;
-    
+
 case 'logout':
     $_SESSION = array();
     session_destroy();
@@ -64,5 +64,5 @@ case 'logout':
 
 default:
 }
+
 ob_end_flush();
-?>
