@@ -1,18 +1,7 @@
 <?php declare(strict_types=1);
 
-/**
- * Global variables and constants will be defined in this page
- * These variables and constants may be used in multiple pages.
- * Below we start a database connection.
- * Since PHP in moving to PDO and MySQLi, we no longer use MySQL.
- * PHP version 7+
- *
- * @category Social
- * @package  Social
- * @author   Ziarlos <bruce.wopat@gmail.com>
- * @license  http://opensource.org/licenses/gpl-license.php GNU Public License
- * @link     https://github.com/Ziarlos
- */
+use Nerdvana\Authenticate;
+
 ob_start();
 session_start();
 
@@ -55,13 +44,13 @@ if (Authenticate::isLoggedIn()) {
         <br class="clear">
     </section>
 
-    <h3>In Progress:</h4>
+    <h3>In Progress:</h3>
     <h4>Events</h4>
         <ul>
             <li>Calendar for events</li>
             <li>Notifications from calendar</li>
         </ul>
-    <h4>Forums</h5>
+    <h4>Forums</h4>
         <ul>
             <li>Forum Script</li>
             <li>Forum Class</li>
@@ -84,14 +73,14 @@ if (Authenticate::isLoggedIn()) {
             <li>Accounts Page</li>
         </ul>
 
-    <h1 style="font: 40px; color: orange">PRACTICE MAKES PERFECT! <br>More practice = better skills.</h1>
+    <h1 style="font-size: 40px; color: orange">PRACTICE MAKES PERFECT! <br>More practice = better skills.</h1>
     <?php
     }
 } else {
     Authenticate::notLoggedIn();
 }
+
 require_once 'includes/private_footer.php';
 $contents = ob_get_contents();
 echo $contents;
 ob_end_flush();
-?>

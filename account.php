@@ -1,18 +1,6 @@
 <?php declare(strict_types=1);
 
-/**
- * Global variables and constants will be defined in this page
- * These variables and constants may be used in multiple pages.
- * Below we start a database connection.
- * Since PHP in moving to PDO and MySQLi, we no longer use MySQL.
- * PHP version 7+
- * 
- * @category Social
- * @package  Social
- * @author   Ziarlos <bruce.wopat@gmail.com>
- * @license  http://opensource.org/licenses/gpl-license.php GNU Public License
- * @link     https://github.com/Ziarlos
- */
+use Nerdvana\Authenticate;
 
 ob_start();
 session_start();
@@ -115,7 +103,7 @@ if (Authenticate::isLoggedIn()) {
         }
         echo '<div class="back_button"><a href="account.php">Account Settings</a></div>';
         break;
-    
+
     case 'change-email':
         if (isset($_POST['change_email_confirmed']) && $_POST['change_email_confirmed'] == "Y") {
             $current_email = isset($_POST['current_email']) ? $_POST['current_email'] : null;
@@ -212,7 +200,7 @@ if (Authenticate::isLoggedIn()) {
         echo '<div class="back_button"><a href="account.php">Account Settings</a></div>';
 
         break;
-    
+
     case 'change-password':
         if (isset($_POST['change_password_confirmed']) && $_POST['change_password_confirmed'] === "Y") {
             if (isset($_POST['enter_current_password'])) {
@@ -299,7 +287,7 @@ if (Authenticate::isLoggedIn()) {
             echo '<a href="account.php">Account Settings</a>';
         echo '</div>';
         break;
-    
+
     case 'manage-images':
         if (isset($_GET['sub-action']) && $_GET['sub-action'] == "delete_image") {
             if (isset($_GET['image_name'])) {
@@ -352,16 +340,16 @@ if (Authenticate::isLoggedIn()) {
         }
         echo '<div class="back_button"><a href="account.php">Account Settings</a></div>';
         break;
-    
+
     case 'upload-images':
         echo '<div class="alert alert-warning">';
             echo '<p>This is still in development.</p>';
         echo '</div>';
-        
+
         if (isset($_POST['upload_images']) && $_POST['upload_images'] == "Y") {
             echo '<p>You submitted the images upload form! The coder is researching methods of uploading pictures.</p>';
-            
-            
+
+
             if (isset($_FILES['images']) && count($_FILES['images']['name']) == 1) {
                 if (isset($_FILES['images'])) {
                     //  $image = $_FILES['images']['name'];
@@ -421,7 +409,7 @@ if (Authenticate::isLoggedIn()) {
                     </div>
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
-                            <button type="submit" name="upload_images" 
+                            <button type="submit" name="upload_images"
                                 value="Y" class="btn btn-default">
                                 Upload Images
                             </button>
@@ -432,7 +420,7 @@ if (Authenticate::isLoggedIn()) {
         <?php
         echo '<div class="back_button"><a href="account.php">Account Settings</a></div>';
         break;
-    
+
     default:
     ?>
         <ul class="list-group">
@@ -457,8 +445,9 @@ if (Authenticate::isLoggedIn()) {
 } else {
     Authenticate::notLoggedIn();
 }
+
 require_once 'includes/private_footer.php';
+
 $contents = ob_get_contents();
 ob_end_flush();
 echo $contents;
-?>

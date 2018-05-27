@@ -1,23 +1,13 @@
 <?php declare(strict_types=1);
 
-/**
- * Global variables and constants will be defined in this page
- * These variables and constants may be used in multiple pages.
- * Below we start a database connection.
- * Since PHP in moving to PDO and MySQLi, we no longer use MySQL.
- * PHP version 7+
- *
- * @category Social
- * @package  Social
- * @author   Ziarlos <bruce.wopat@gmail.com>
- * @license  http://opensource.org/licenses/gpl-license.php GNU Public License
- * @link     https://github.com/Ziarlos
- */
+use Nerdvana\Authenticate;
+
 ob_start();
 
 require_once 'includes/public_header.php';
 
 $action = isset($_GET['action']) ? $_GET['action'] : '';
+
 switch ($action) {
 case 'view':
     $user_id = isset($_GET['user_id']) ? (int) $_GET['user_id'] : null;
@@ -39,7 +29,7 @@ case 'view':
         <?php
     } else {
         Authenticate::invalidAuthorization();
-    }  
+    }
     break;
 
 default:
@@ -59,4 +49,3 @@ require_once 'includes/public_footer.php';
 $contents = ob_get_contents();
 // echo $contents;
 ob_end_flush();
-?>

@@ -1,18 +1,7 @@
 <?php declare(strict_types=1);
 
-/**
- * Global variables and constants will be defined in this page
- * These variables and constants may be used in multiple pages.
- * Below we start a database connection.
- * Since PHP in moving to PDO and MySQLi, we no longer use MySQL.
- * PHP version 7+
- *
- * @category Social
- * @package  Social
- * @author   Ziarlos <bruce.wopat@gmail.com>
- * @license  http://opensource.org/licenses/gpl-license.php GNU Public License
- * @link     https://github.com/Ziarlos
- */
+use Nerdvana\Authenticate;
+
 session_start();
 ob_start();
 
@@ -21,7 +10,7 @@ require_once 'includes/private_header.php';
 if (Authenticate::isLoggedIn()) {
     $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : null;
     switch ($action) {
-    
+
     case 'view_board':
         if (isset($_GET['category_id'])) {
             $_GET['category_id'] = filter_input(INPUT_GET, 'category_id', FILTER_VALIDATE_INT);
@@ -86,7 +75,7 @@ if (Authenticate::isLoggedIn()) {
         </form>
         <?php
         break;
-        
+
     case 'view_topic':
         $topic_id = isset($_GET['topic_id']) ? $_GET['topic_id'] : '';
         $topic = $Forum->viewTopic($topic_id);
@@ -149,7 +138,7 @@ if (Authenticate::isLoggedIn()) {
         </form>
         <?php
         break;
-        
+
     case 'create_topic':
         $category_id = isset($_POST['category_id']) ? $_POST['category_id'] : '';
         $category = $Forum->getCategoryInfo($category_id);
@@ -159,7 +148,7 @@ if (Authenticate::isLoggedIn()) {
         echo '<p>Topic created!</p>';
         echo '<div class="back_button"><a href="forum.php">Back to Main Forums</a> || <a href="forum.php?action=view_board&amp;category_id=' . $category['category_id'] .'">' . $category['category_name'] . '</a></div>';
         break;
-        
+
     case 'reply':
         $topic_id = isset($_POST['topic_id']) ? $_POST['topic_id'] : '';
         $topic = $Forum->viewTopic($topic_id);
@@ -171,7 +160,7 @@ if (Authenticate::isLoggedIn()) {
             echo '<a href="forum.php">Back to Main Forums</a> || <a href="forum.php?action=view_board&amp;category_id=' . $category['category_id'] . '">' . $category['category_name'] . '</a> || <a href="forum.php?action=view_topic&amp;topic_id=' . $topic['topic_id'] . '">Back to ' . $topic['topic_subject'] . '</a>';
         echo '</div>';
         break;
-        
+
     case 'edit_reply':
         if (isset($_GET['post_id'])) {
             $post_id = filter_input(INPUT_GET, 'post_id', FILTER_SANITIZE_NUMBER_INT);
@@ -211,13 +200,13 @@ if (Authenticate::isLoggedIn()) {
                         </div>
                     </div>
                 </fieldset>
-            </form>				
+            </form>
             <?php
         } else {
             Authenticate::invalidAuthorization();
         }
         break;
-        
+
     case 'delete_reply':
         if (isset($_GET['post_id'])) {
             $post_id = filter_input(INPUT_GET, 'post_id', FILTER_SANITIZE_NUMBER_INT);
@@ -230,7 +219,7 @@ if (Authenticate::isLoggedIn()) {
             Authenticate::invalidAuthorization();
         }
         break;
-        
+
     case 'edit_topic':
         if (isset($_GET['topic_id'])) {
             $topic_id = filter_input(INPUT_GET, 'topic_id', FILTER_SANITIZE_NUMBER_INT);
@@ -243,7 +232,7 @@ if (Authenticate::isLoggedIn()) {
             if (isset($_POST['edit_topic_content'])) {
                 $edit_topic_content = filter_input(INPUT_POST, 'edit_topic_content', FILTER_SANITIZE_STRING);
             }
-            
+
             if (isset($_POST['edit_topic'])) {
                 $Forum->editTopic($topic['topic_id'], $edit_topic_subject, $edit_topic_content, $user['user_id']);
                 echo '<p>You have successfully edited this topic.</p>';
@@ -287,7 +276,7 @@ if (Authenticate::isLoggedIn()) {
             Authenticate::invalidAuthorization();
         }
         break;
-        
+
     case 'delete_topic':
         if (isset($_GET['topic_id'])) {
             $topic_id = filter_input(INPUT_GET, 'topic_id', FILTER_SANITIZE_NUMBER_INT);
@@ -300,7 +289,7 @@ if (Authenticate::isLoggedIn()) {
             Authenticate::invalidAuthorization();
         }
         break;
-        
+
     default:
         ?>
         <ol class="breadcrumb">
@@ -345,41 +334,8 @@ if (Authenticate::isLoggedIn()) {
 } else {
     Authenticate::notLoggedIn();
 }
+
 require_once 'includes/private_footer.php';
 $contents = ob_get_contents();
 ob_end_flush();
 echo $contents;
-?>                             
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
