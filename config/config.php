@@ -1,6 +1,6 @@
 <?php
 
-use Nerdvana\Authenticate;
+//use Nerdvana\Authenticate;
 use Nerdvana\Chat;
 use Nerdvana\Database;
 use Nerdvana\Forum;
@@ -36,21 +36,6 @@ define('DATABASE', getenv('DATABASE'));
  * Define the timezone: set to America/Los_Angeles (PST) for now.
  */
 date_default_timezone_set('America/Los_Angeles');
-
-/**
- * Attempt to connect to the database
- */
-try {
-    $driver_options = array(
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-    );
-    $dbx = new PDO('mysql:host=' . DB_HOSTNAME . ';dbname=' . DATABASE . ';charset=UTF8', DB_USERNAME, DB_PASSWORD,
-        $driver_options);
-} catch (PDOException $ex) {
-    echo '<p>Could not connect using PDO!</p>';
-    echo $ex->getMessage();
-}
 
 /**
  * Load classes
