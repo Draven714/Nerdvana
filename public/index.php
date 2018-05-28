@@ -1,18 +1,5 @@
 <?php declare(strict_types=1);
 
-/**
- * Global variables and constants will be defined in this page
- * These variables and constants may be used in multiple pages.
- * Below we start a database connection.
- * Since PHP in moving to PDO and MySQLi, we no longer use MySQL.
- * PHP version 7+
- *
- * @category Social
- * @package  Social
- * @author   Ziarlos <bruce.wopat@gmail.com>
- * @license  http://opensource.org/licenses/gpl-license.php GNU Public License
- * @link     https://github.com/Ziarlos
- */
 ob_start();
 session_start();
 
@@ -237,7 +224,7 @@ case 'register':
             echo '</div>';
         }
 
-        $check = $dbx->prepare("SELECT * FROM users WHERE email = :email OR user_name = :user_name");
+        $check = $Database->prepare("SELECT * FROM users WHERE email = :email OR user_name = :user_name");
         $check->execute(array(':email' => $register_email, ':user_name' => $user_name));
 
         if ($check->rowCount() == 1) {
@@ -250,7 +237,7 @@ case 'register':
         if ($error === false) {
             $password = HASH("SHA512", $register_password);
 
-            $add = $dbx->prepare("INSERT INTO users (user_id, user_name, email, password, gender) values ('', :user_name, :email, :password, :gender)");
+            $add = $Database->prepare("INSERT INTO users (user_id, user_name, email, password, gender) values ('', :user_name, :email, :password, :gender)");
             $add->execute(array(':user_name' => $user_name, ':email' => $register_email, ':password' => $password, ':gender' => $gender));
 
             echo '<div class="alert alert-success">';
@@ -365,5 +352,6 @@ default:
 </div>
 <?php
 }
+
 require_once ROOT . '/includes/public_footer.php';
 ob_end_flush();

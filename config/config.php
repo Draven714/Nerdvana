@@ -1,10 +1,16 @@
 <?php
+
+//use Nerdvana\Authenticate;
+use Nerdvana\Chat;
+use Nerdvana\Database;
+use Nerdvana\Forum;
+use Nerdvana\User;
+
 /**
  * Global variables and constants will be defined in this page
  * These variables and constants may be used in multiple pages.
  * Below we start a database connection.
  * Since PHP in moving to PDO and MySQLi, we no longer use MySQL.
- *
  * PHP version 7+
  *
  * @category Social
@@ -34,39 +40,18 @@ define('DB_PASSWORD', getenv('DB_PASSWORD'));
 define('DATABASE', getenv('DATABASE'));
 
 /**
-* Define the timezone: set to America/Los_Angeles (PST) for now.
-*/
-
-date_default_timezone_set('America/Los_Angeles');
-
-/**
- * Attempt to connect to the database
+ * Define the timezone: set to America/Los_Angeles (PST) for now.
  */
-
-try {
-    $driver_options = array(
-    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-    );
-    $dbx = new PDO('mysql:host=' . DB_HOSTNAME . ';dbname=' . DATABASE . ';charset=UTF8', DB_USERNAME, DB_PASSWORD, $driver_options);
-}
-catch (PDOException $ex) {
-    echo '<p>Could not connect using PDO!</p>';
-    echo $ex->getMessage();
-}
+date_default_timezone_set('America/Los_Angeles');
 
 /**
  * Load classes
  */
-
-require_once ROOT . '/class/Database.class.php';
-require_once ROOT . '/class/Authenticate.class.php';
-require_once ROOT . '/class/User.class.php';
-require_once ROOT . '/class/Chat.class.php';
-require_once ROOT . '/class/Forum.class.php';
-
 $Database = new Database(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DATABASE);
-$Authenticate = new Authenticate($Database);
+/**
+ * Have not finished the authentication script so it will be commented out for the moment
+ * $Authenticate = new Authenticate($Database);
+ */
 $User = new User($Database);
 $Forum = new Forum($Database, $User);
 $Chat = new Chat($Database);
@@ -83,7 +68,7 @@ if (isset($_SESSION['user_id'])) {
  *
  * @return void
  */
-function handleException($exception)
+function handleException($exception): void
 {
     echo '<p>' . $exception->getMessage() . '</p>';
     echo '<p> Sorry, an error has occurred. Please try again later.</p>';

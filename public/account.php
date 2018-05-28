@@ -1,18 +1,6 @@
 <?php declare(strict_types=1);
 
-/**
- * Global variables and constants will be defined in this page
- * These variables and constants may be used in multiple pages.
- * Below we start a database connection.
- * Since PHP in moving to PDO and MySQLi, we no longer use MySQL.
- * PHP version 7+
- *
- * @category Social
- * @package  Social
- * @author   Ziarlos <bruce.wopat@gmail.com>
- * @license  http://opensource.org/licenses/gpl-license.php GNU Public License
- * @link     https://github.com/Ziarlos
- */
+use Nerdvana\Authenticate;
 
 ob_start();
 session_start();
@@ -20,7 +8,6 @@ session_start();
 require_once '../includes/private_header.php';
 
 if (Authenticate::isLoggedIn()) {
-
     $action = isset($_GET['action']) ? $_GET['action'] : null;
 
     switch ($action) {
@@ -361,7 +348,6 @@ if (Authenticate::isLoggedIn()) {
         if (isset($_POST['upload_images']) && $_POST['upload_images'] == "Y") {
             echo '<p>You submitted the images upload form! The coder is researching methods of uploading pictures.</p>';
 
-
             if (isset($_FILES['images']) && count($_FILES['images']['name']) == 1) {
                 if (isset($_FILES['images'])) {
                     //  $image = $_FILES['images']['name'];
@@ -457,6 +443,7 @@ if (Authenticate::isLoggedIn()) {
 } else {
     Authenticate::notLoggedIn();
 }
+
 require_once ROOT . '/includes/private_footer.php';
 $contents = ob_get_contents();
 ob_end_flush();

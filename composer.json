@@ -11,5 +11,19 @@
     "minimum-stability": "dev",
     "require": {
         "vlucas/phpdotenv": "^2.5@dev"
+    },
+    "autoload": {
+        "psr-4": {
+            "Nerdvana\\": [
+<<<<<<< HEAD
+                "class/"
+=======
+                "class"
+>>>>>>> ea909f18347467b41b058e6a32fec95405e467dc
+            ]
+        }
+    },
+    "config": {
+        "optimize-autoloader": true
     }
 }
