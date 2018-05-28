@@ -1,5 +1,12 @@
 <?php declare(strict_types=1);
 
+/**
+ * @category Social
+ * @package  Social
+ * @author   Ziarlos <bruce.wopat@gmail.com>
+ * @license  http://opensource.org/licenses/gpl-license.php GNU Public License
+ * @link     https://github.com/Ziarlos
+ */
 use Nerdvana\Authenticate;
 
 ob_start();
@@ -28,7 +35,7 @@ case 'view':
         </div>
         <?php
     } else {
-        Authenticate::invalidAuthorization();
+        echo '<div class="alert alert-warning">You must enter a numeric value for user id.</div>';
     }
     break;
 

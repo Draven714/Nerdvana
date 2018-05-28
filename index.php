@@ -13,6 +13,7 @@
  * @license  http://opensource.org/licenses/gpl-license.php GNU Public License
  * @link     https://github.com/Ziarlos
  */
+
 ob_start();
 session_start();
 
@@ -166,7 +167,6 @@ case 'reset-password':
                 </button>
             </div>
         </div>
-        </fieldset>
     </form>
     <?php
     }
@@ -366,6 +366,5 @@ default:
 </div>
 <?php
 }
-
 require_once 'includes/public_footer.php';
 ob_end_flush();

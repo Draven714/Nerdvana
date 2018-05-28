@@ -41,11 +41,15 @@ date_default_timezone_set('America/Los_Angeles');
  * Load classes
  */
 $Database = new Database(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DATABASE);
+<<<<<<< HEAD
+$Authenticate = new Authenticate($Database); 
+=======
 /**
  * Have not finished the authentication script so it will be commented out for the moment
  * $Authenticate = new Authenticate($Database);
  */
 
+>>>>>>> ea909f18347467b41b058e6a32fec95405e467dc
 $User = new User($Database);
 $Forum = new Forum($Database, $User);
 $Chat = new Chat($Database);
@@ -62,7 +66,7 @@ if (isset($_SESSION['user_id'])) {
  *
  * @return void
  */
-function handleException($exception)
+function handleException($exception): void
 {
     echo '<p>' . $exception->getMessage() . '</p>';
     echo '<p> Sorry, an error has occurred. Please try again later.</p>';
