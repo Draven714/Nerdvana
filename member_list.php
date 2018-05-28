@@ -1,7 +1,5 @@
 <?php declare(strict_types=1);
 
-use Nerdvana\Authenticate;
-
 ob_start();
 session_start();
 

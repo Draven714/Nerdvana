@@ -7,7 +7,6 @@
  * @license  http://opensource.org/licenses/gpl-license.php GNU Public License
  * @link     https://github.com/Ziarlos
  */
-use Nerdvana\Authenticate;
 
 ob_start();
 

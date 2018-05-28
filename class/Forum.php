@@ -53,7 +53,6 @@ class Forum
         return $this->Database->count();
     }
 
-
     /**
      * @name viewCategories
      * @purpose returns an array of the categories for the main forum.

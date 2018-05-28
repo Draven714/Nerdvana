@@ -8,7 +8,6 @@ session_start();
 require_once 'includes/private_header.php';
 
 if (Authenticate::isLoggedIn()) {
-
     $action = isset($_GET['action']) ? $_GET['action'] : null;
 
     switch ($action) {

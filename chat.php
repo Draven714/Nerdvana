@@ -8,8 +8,6 @@
  * @link     https://github.com/Ziarlos
  */
 
-use Nerdvana\Authenticate;
-
 ob_start();
 session_start();
 
